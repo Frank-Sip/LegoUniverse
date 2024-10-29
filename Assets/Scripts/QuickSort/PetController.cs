@@ -38,17 +38,14 @@ public class PetController : MonoBehaviour, IInteractable
     
     private void Update()
     {
-        if (canShoot)
+        if (canShoot && detectedEnemies.Count > 0)
         {
-            if (detectedEnemies.Count > 0)
+            Enemy closestEnemy = FindClosestEnemy();
+            if (closestEnemy != null)
             {
-                Enemy closestEnemy = FindClosestEnemy();
-                if (closestEnemy != null)
-                {
-                    LookAtEnemy(closestEnemy);
-                    Vector3 shootDirection = (closestEnemy.transform.position - transform.position).normalized;
-                    shootingBehavior.Shoot(shootDirection);
-                }
+                LookAtEnemy(closestEnemy);
+                Vector3 shootDirection = (closestEnemy.transform.position - transform.position).normalized;
+                shootingBehavior.Shoot(shootDirection);
             }
         }
     }
@@ -84,7 +81,7 @@ public class PetController : MonoBehaviour, IInteractable
         if (detectedEnemies.Count == 0) return null;
         
         Enemy[] enemiesArray = detectedEnemies.ToArray();
-        quickSort(enemiesArray, 0, enemiesArray.Length - 1);
+        QuickSort(enemiesArray, 0, enemiesArray.Length - 1);
     
         return enemiesArray[0];
     }
@@ -97,19 +94,20 @@ public class PetController : MonoBehaviour, IInteractable
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 10f);
     }
     
-    public void quickSort(Enemy[] arr, int left, int right)
+    private void QuickSort(Enemy[] arr, int left, int right)
     {
         if (left < right)
         {
             int pivot = Partition(arr, left, right);
-            quickSort(arr, left, pivot);
-            quickSort(arr, pivot + 1, right);
+            QuickSort(arr, left, pivot);
+            QuickSort(arr, pivot + 1, right);
         }
     }
 
-    public int Partition(Enemy[] arr, int left, int right)
+    private int Partition(Enemy[] arr, int left, int right)
     {
         float pivotDistance = Vector3.Distance(transform.position, arr[(left + right) / 2].transform.position);
+        
         while (true)
         {
             while (Vector3.Distance(transform.position, arr[left].transform.position) < pivotDistance && left < right)
