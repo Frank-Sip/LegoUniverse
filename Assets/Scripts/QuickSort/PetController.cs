@@ -15,7 +15,7 @@ public class PetController : MonoBehaviour, IInteractable
     public void Interact()
     {
         transform.SetParent(character.transform);
-        transform.localPosition = new Vector3(0, 2f, 0);
+        transform.localPosition = new Vector3(0, 3f, 0);
         
         Collider petCollider = GetComponent<Collider>();
         Collider characterCollider = character.GetComponent<Collider>();
