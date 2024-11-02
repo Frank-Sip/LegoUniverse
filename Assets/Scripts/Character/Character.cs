@@ -79,30 +79,6 @@ public class WalkController : IMovementController
     }
 }
 
-public class ClimbController : IMovementController
-{
-    private float movementSpeed;
-    private Transform transform;
-
-    public ClimbController(float movementSpeed, Transform transform)
-    {
-        this.movementSpeed = movementSpeed;
-        this.transform = transform;
-    }
-
-    public void Move(Vector3 playerInput)
-    {
-        var vertical = playerInput.y;
-        var movement = new Vector3(0, vertical, 0).normalized * movementSpeed * Time.deltaTime;
-        transform.position += movement;
-    }
-
-    public void Jump()
-    {
-
-    }
-}
-
 public interface IMovementController
 {
     void Move(Vector3 playerInput);
@@ -115,26 +91,18 @@ public struct MovementControllerConfig
     public float movementSpeed;
 }
 
-public interface IWalk
-{
-    void SetWalkState();
-}
-
-public interface IClimb
-{
-    void SetClimbState();
-}
-
-public class Character : MonoBehaviour, IDamageable, IWalk, IClimb, IDeathLogic
+public class Character : MonoBehaviour, IDamageable, IDeathLogic
 {
     public float movementSpeed;
     private bool canMove = true;
+    
     [SerializeField] private Transform interactionPoint;
     public float interactionRadius;
     [SerializeField] private LayerMask interactionLayer;
+    
     public bool godMode = false;
     public MovementControllerConfig walkConfig;
-    [SerializeField] private MovementControllerConfig climbConfig;
+    
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float groundRadius;
@@ -144,7 +112,6 @@ public class Character : MonoBehaviour, IDamageable, IWalk, IClimb, IDeathLogic
     
     private IMovementController currentController;
     public WalkController walkController;
-    private ClimbController climbController;
     private Rigidbody rb;
 
     private Collider[] interactables = new Collider[5];
@@ -156,7 +123,6 @@ public class Character : MonoBehaviour, IDamageable, IWalk, IClimb, IDeathLogic
     {
         rb = GetComponent<Rigidbody>();
         walkController = new WalkController(walkConfig.movementSpeed, transform, rb, jumpForce, groundCheck, groundLayer, groundRadius, jumpBuffer);
-        climbController = new ClimbController(climbConfig.movementSpeed, transform);
         healthComponent = GetComponent<HealthComponent>();
         audioManager = GameManager.Instance.audioManager;
         
@@ -167,32 +133,30 @@ public class Character : MonoBehaviour, IDamageable, IWalk, IClimb, IDeathLogic
     {
         if (canMove)
         {
-            var horizontal = Input.GetAxisRaw("Horizontal");
-            var vertical = Input.GetAxisRaw("Vertical");
-
-            var movement = new Vector3(horizontal, 0, vertical).normalized;
-
-            if (currentController is ClimbController)
-            {
-                movement = new Vector3(0, vertical, 0).normalized;
-            }
-
-            currentController.Move(movement);
-
-            if (movement != Vector3.zero)
-            {
-                Quaternion newRotation = Quaternion.LookRotation(movement);
-                transform.rotation = newRotation;
-
-                interactionPoint.rotation = newRotation;
-            }
-
+            Move();
             currentController.Jump();
-
             if (Input.GetKeyDown(KeyCode.E))
             {
                 TryInteract();
             }
+        }
+    }
+
+    private void Move()
+    {
+        var horizontal = Input.GetAxisRaw("Horizontal");
+        var vertical = Input.GetAxisRaw("Vertical");
+
+        var movement = new Vector3(horizontal, 0, vertical).normalized;
+
+        currentController.Move(movement);
+
+        if (movement != Vector3.zero)
+        {
+            Quaternion newRotation = Quaternion.LookRotation(movement);
+            transform.rotation = newRotation;
+
+            interactionPoint.rotation = newRotation;
         }
     }
 
@@ -204,16 +168,6 @@ public class Character : MonoBehaviour, IDamageable, IWalk, IClimb, IDeathLogic
     public void DisableMovement()
     {
         canMove = false;
-    }
-    
-    public void SetWalkState()
-    {
-        currentController = walkController;
-    }
-
-    public void SetClimbState()
-    {
-        currentController = climbController;
     }
     
     private void PlayDMGSound()
