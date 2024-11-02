@@ -9,12 +9,11 @@ public class Enemy : MonoBehaviour, IDamageable, IDeathLogic
     [SerializeField] private Transform target;
     [SerializeField] private LayerMask playerLayer;
     private bool isChasing = false;
+    
+    public HealthComponent healthComponent;
 
     [SerializeField] private int dmgSound;
     private AudioManager audioManager;
-    
-    public HealthComponent healthComponent;
-    
 
     private void Awake()
     {

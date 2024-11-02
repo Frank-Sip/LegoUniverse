@@ -11,11 +11,28 @@ public class PetController : MonoBehaviour, IInteractable
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] ShootingBehavior shootingBehavior;
     private bool canShoot = false;
+    
+    [SerializeField] private int interactionSound;
+    private AudioManager audioManager;
 
+    private void Awake()
+    {
+        audioManager = GameManager.Instance.audioManager;
+    }
+    
+    private void PlayInteractionSound()
+    {
+        if (interactionSound >= 0 && interactionSound < audioManager.soundEffects.Count)
+        {
+            audioManager.PlaySFX(interactionSound);
+        }
+    }
+    
     public void Interact()
     {
         transform.SetParent(character.transform);
         transform.localPosition = new Vector3(0, 3f, 0);
+        PlayInteractionSound();
         
         Collider petCollider = GetComponent<Collider>();
         Collider characterCollider = character.GetComponent<Collider>();

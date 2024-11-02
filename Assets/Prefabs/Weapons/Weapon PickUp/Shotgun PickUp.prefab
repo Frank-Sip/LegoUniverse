@@ -107,7 +107,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 976fd7fb48e8db54593d596eb4616b11,
         type: 3}
       propertyPath: m_Name
-      value: Shotgun PickUp 1
+      value: Shotgun PickUp
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 976fd7fb48e8db54593d596eb4616b11,
         type: 3}
@@ -150,6 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponToPickUp: {fileID: 11400000, guid: f8c5d3af47283ba47a0d5825775fe7d1, type: 2}
+  interactionSound: 5
 --- !u!136 &1097751696951246116
 CapsuleCollider:
   m_ObjectHideFlags: 0

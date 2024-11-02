@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5e3ba967a5b56248b9ca70f51db71de, type: 3}
   m_Name: Weapon Audio
   m_EditorClassIdentifier: 
-  volume: 0.5
+  volume: 1
   fire: {fileID: 8300000, guid: 67c10bdd01d33b44a96943d34bed00aa, type: 3}
