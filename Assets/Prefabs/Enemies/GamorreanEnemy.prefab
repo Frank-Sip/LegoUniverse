@@ -368,6 +368,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 8
+  dmgSound: 3
   healthComponent: {fileID: 6679890013672530010}
 --- !u!114 &6679890013672530010
 MonoBehaviour:

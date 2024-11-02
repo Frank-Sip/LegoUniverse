@@ -10,11 +10,16 @@ public class Enemy : MonoBehaviour, IDamageable, IDeathLogic
     [SerializeField] private LayerMask playerLayer;
     private bool isChasing = false;
 
+    [SerializeField] private int dmgSound;
+    private AudioManager audioManager;
+    
     public HealthComponent healthComponent;
+    
 
     private void Awake()
     {
         healthComponent = GetComponent<HealthComponent>();
+        audioManager = GameManager.Instance.audioManager;
     }
 
     private void Update()
@@ -25,9 +30,18 @@ public class Enemy : MonoBehaviour, IDamageable, IDeathLogic
         }
     }
 
+    private void PlayDMGSound()
+    {
+        if (dmgSound >= 0 && dmgSound < audioManager.soundEffects.Count)
+        {
+            audioManager.PlaySFX(dmgSound);
+        }
+    }
+    
     public void TakeDamage(float damage)
     {
         healthComponent.TakeDamage(damage);
+        PlayDMGSound();
     }
 
     public  void Die()

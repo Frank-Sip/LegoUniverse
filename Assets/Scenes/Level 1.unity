@@ -572,6 +572,7 @@ MonoBehaviour:
   targetPoint: {fileID: 1002519685}
   fireRate: 5
   bulletSpeed: 40
+  shootSound: 4
 --- !u!1001 &127654306
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2347,6 +2348,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletConfig: {fileID: 11400000, guid: bfd726d38b33f144c97ccac12e737b79, type: 2}
   spawnPoint: {fileID: 1275108561}
+  spawnSound: 5
 --- !u!4 &643977908 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d6066633ddb3216489599b9d9aa8429b,
@@ -2501,7 +2503,7 @@ PrefabInstance:
     - target: {fileID: 1645143615516230413, guid: af1be84905d6aa04388c92e6265ca457,
         type: 3}
       propertyPath: m_Name
-      value: GamorreanEnemy
+      value: Training dummy
       objectReference: {fileID: 0}
     - target: {fileID: 2134541066813610423, guid: af1be84905d6aa04388c92e6265ca457,
         type: 3}
@@ -3413,6 +3415,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GamorreanEnemy (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 1645143615516230413, guid: af1be84905d6aa04388c92e6265ca457,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2134541066813610423, guid: af1be84905d6aa04388c92e6265ca457,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3635,6 +3642,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthComponent: {fileID: 983969289}
+  dmgSound: 3
 --- !u!1 &994911999
 GameObject:
   m_ObjectHideFlags: 0
@@ -5564,7 +5572,7 @@ PrefabInstance:
     - target: {fileID: 2134541066813610423, guid: af1be84905d6aa04388c92e6265ca457,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -24.67
+      value: -25.49
       objectReference: {fileID: 0}
     - target: {fileID: 2134541066813610423, guid: af1be84905d6aa04388c92e6265ca457,
         type: 3}
@@ -6056,7 +6064,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!135 &1678957648
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -8486,7 +8494,7 @@ PrefabInstance:
     - target: {fileID: 2499211201170121554, guid: 0710c6faa73e73b40abcf4bd73b5b67b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.11
+      value: -0.56
       objectReference: {fileID: 0}
     - target: {fileID: 2499211201170121554, guid: 0710c6faa73e73b40abcf4bd73b5b67b,
         type: 3}
