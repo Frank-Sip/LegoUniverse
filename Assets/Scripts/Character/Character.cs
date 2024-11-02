@@ -149,6 +149,9 @@ public class Character : MonoBehaviour, IDamageable, IWalk, IClimb, IDeathLogic
     private Rigidbody rb;
 
     private Collider[] interactables = new Collider[5];
+    
+    [SerializeField] private int dmgSound;
+    private AudioManager audioManager;
 
     private void Awake()
     {
@@ -156,7 +159,8 @@ public class Character : MonoBehaviour, IDamageable, IWalk, IClimb, IDeathLogic
         walkController = new WalkController(walkConfig.movementSpeed, transform, rb, jumpForce, groundCheck, groundLayer, groundRadius, jumpBuffer);
         climbController = new ClimbController(climbConfig.movementSpeed, transform);
         healthComponent = GetComponent<HealthComponent>();
-
+        audioManager = GameManager.Instance.audioManager;
+        
         currentController = walkController;
     }
 
@@ -212,12 +216,21 @@ public class Character : MonoBehaviour, IDamageable, IWalk, IClimb, IDeathLogic
     {
         currentController = climbController;
     }
-
+    
+    private void PlayDMGSound()
+    {
+        if (dmgSound >= 0 && dmgSound < audioManager.soundEffects.Count)
+        {
+            audioManager.PlaySFX(dmgSound);
+        }
+    }
+    
     public void TakeDamage(float damage)
     {
         if (!godMode)
         {
             healthComponent.TakeDamage(damage);
+            PlayDMGSound();
         }
         else
         {
