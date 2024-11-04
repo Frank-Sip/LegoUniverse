@@ -3,28 +3,23 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossEnemy : MonoBehaviour, IDamageable
+public class BossEnemy : MonoBehaviour, IDamageable, IDeathLogic
 {
-    [SerializeField] private float maxHealth;
+    public HealthComponent healthComponent;
 
     private float currentHealth;
     public event Action OnBossKilled;
+    
     private void Awake()
     {
-        currentHealth = maxHealth;
+        healthComponent = GetComponent<HealthComponent>();
     }
-
-
+    
     public void TakeDamage(float damage)
     {
-        currentHealth -= damage;
-
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
+        healthComponent.TakeDamage(damage);
     }
-
+    
     public void Die()
     {
         Destroy(gameObject);
