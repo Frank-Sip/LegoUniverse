@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private Enemy enemyPrefab;
     [SerializeField] private float spawnInterval = 2f;
     [SerializeField] private BoxCollider spawnArea;
     private bool isSpawning = false;
@@ -19,8 +18,8 @@ public class EnemySpawner : MonoBehaviour
         {
             bossEnemy.OnBossKilled += StopSpawning;
         }
-        enemyFactory = gameObject.AddComponent<EnemyFactory>();
-        enemyFactory.Initialize(enemyPrefab);
+
+        enemyFactory = FindObjectOfType<EnemyFactory>();
     }
 
     public void StartSpawning()
