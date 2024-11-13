@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-            ChangeGameStatus(new MainMenuState(), true);
+            //ChangeGameStatus(new MainMenuState(), true);
         }
         else if (instance != this)
         {
@@ -42,12 +42,6 @@ public class GameManager : MonoBehaviour
         }
 
         audioManager = FindObjectOfType<AudioManager>();
-        
-        if (audioManager == null)
-        {
-            GameObject audioManagerObject = new GameObject("AudioManager");
-            audioManager = audioManagerObject.AddComponent<AudioManager>();
-        }
     }
 
     private void Update()

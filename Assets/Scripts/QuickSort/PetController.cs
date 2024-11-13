@@ -1,17 +1,16 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PetController : MonoBehaviour, IInteractable
 {
     public InteractPriority InteractPriority => InteractPriority.High;
-    
-    private List<Enemy> detectedEnemies = new List<Enemy>();
+
+    private List<Transform> detectedEnemies = new List<Transform>();
     private Transform character;
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] ShootingBehavior shootingBehavior;
     private bool canShoot = false;
-    
+
     [SerializeField] private int interactionSound;
     private AudioManager audioManager;
 
@@ -19,7 +18,7 @@ public class PetController : MonoBehaviour, IInteractable
     {
         audioManager = GameManager.Instance.audioManager;
     }
-    
+
     private void PlayInteractionSound()
     {
         if (interactionSound >= 0 && interactionSound < audioManager.soundEffects.Count)
@@ -27,13 +26,13 @@ public class PetController : MonoBehaviour, IInteractable
             audioManager.PlaySFX(interactionSound);
         }
     }
-    
+
     public void Interact()
     {
         transform.SetParent(character.transform);
         transform.localPosition = new Vector3(0, 3f, 0);
         PlayInteractionSound();
-        
+
         Collider petCollider = GetComponent<Collider>();
         Collider characterCollider = character.GetComponent<Collider>();
         if (petCollider != null && characterCollider != null)
@@ -52,16 +51,16 @@ public class PetController : MonoBehaviour, IInteractable
             character = playerComponent.transform;
         }
     }
-    
+
     private void Update()
     {
         if (canShoot && detectedEnemies.Count > 0)
         {
-            Enemy closestEnemy = FindClosestEnemy();
+            Transform closestEnemy = FindClosestEnemy();
             if (closestEnemy != null)
             {
                 LookAtEnemy(closestEnemy);
-                Vector3 shootDirection = (closestEnemy.transform.position - transform.position).normalized;
+                Vector3 shootDirection = (closestEnemy.position - transform.position).normalized;
                 shootingBehavior.Shoot(shootDirection);
             }
         }
@@ -71,10 +70,9 @@ public class PetController : MonoBehaviour, IInteractable
     {
         if (((1 << other.gameObject.layer) & enemyLayer) != 0)
         {
-            Enemy enemy = other.GetComponent<Enemy>();
-            if (enemy != null && !detectedEnemies.Contains(enemy))
+            if (!detectedEnemies.Contains(other.transform))
             {
-                detectedEnemies.Add(enemy);
+                detectedEnemies.Add(other.transform);
             }
         }
     }
@@ -83,35 +81,30 @@ public class PetController : MonoBehaviour, IInteractable
     {
         if (((1 << other.gameObject.layer) & enemyLayer) != 0)
         {
-            Enemy enemy = other.GetComponent<Enemy>();
-            if (enemy != null)
-            {
-                detectedEnemies.Remove(enemy);
-            }
+            detectedEnemies.Remove(other.transform);
         }
     }
 
-    private Enemy FindClosestEnemy()
+    private Transform FindClosestEnemy()
     {
         detectedEnemies.RemoveAll(enemy => enemy == null);
-        
+
         if (detectedEnemies.Count == 0) return null;
-        
-        Enemy[] enemiesArray = detectedEnemies.ToArray();
+
+        Transform[] enemiesArray = detectedEnemies.ToArray();
         QuickSort(enemiesArray, 0, enemiesArray.Length - 1);
-    
+
         return enemiesArray[0];
     }
 
-
-    private void LookAtEnemy(Enemy enemy)
+    private void LookAtEnemy(Transform enemy)
     {
-        Vector3 direction = (enemy.transform.position - transform.position).normalized;
+        Vector3 direction = (enemy.position - transform.position).normalized;
         Quaternion rotation = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 10f);
     }
-    
-    private void QuickSort(Enemy[] arr, int left, int right)
+
+    private void QuickSort(Transform[] arr, int left, int right)
     {
         if (left < right)
         {
@@ -121,23 +114,23 @@ public class PetController : MonoBehaviour, IInteractable
         }
     }
 
-    private int Partition(Enemy[] arr, int left, int right)
+    private int Partition(Transform[] arr, int left, int right)
     {
-        float pivotDistance = Vector3.Distance(transform.position, arr[(left + right) / 2].transform.position);
-        
+        float pivotDistance = Vector3.Distance(transform.position, arr[(left + right) / 2].position);
+
         while (true)
         {
-            while (Vector3.Distance(transform.position, arr[left].transform.position) < pivotDistance && left < right)
+            while (Vector3.Distance(transform.position, arr[left].position) < pivotDistance && left < right)
             {
                 left++;
             }
-            while (Vector3.Distance(transform.position, arr[right].transform.position) > pivotDistance && left < right)
+            while (Vector3.Distance(transform.position, arr[right].position) > pivotDistance && left < right)
             {
                 right--;
             }
             if (left < right)
             {
-                Enemy temp = arr[right];
+                Transform temp = arr[right];
                 arr[right] = arr[left];
                 arr[left] = temp;
             }
