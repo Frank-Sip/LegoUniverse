@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-            //ChangeGameStatus(new MainMenuState(), true);
+            ChangeGameStatus(new MainMenuState(), true);
         }
         else if (instance != this)
         {
@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
             }
             else if (newStatus is GameplayState)
             {
-                SceneManager.LoadScene("Level 2");
+                SceneManager.LoadScene("Level 1");
                 audioManager.PlayBGM(1);
             }
             else if (newStatus is VictoryState)

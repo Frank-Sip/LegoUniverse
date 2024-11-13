@@ -8623,6 +8623,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthComponent: {fileID: 2776709401298200449}
+  scene: Level 2
 --- !u!114 &2776709401298200449
 MonoBehaviour:
   m_ObjectHideFlags: 0
