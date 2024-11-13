@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TreeBoss : MonoBehaviour
+public class TreeBoss : MonoBehaviour, IDamageable, IDeathLogic
 {
     public ABB arbol;  
     public GameObject[] gameObjects;  
     public Transform[] spawnPoints; 
     public float delayBetweenSpawns = 1f; 
-
-    void Start()
+    public HealthComponent healthComponent;
+    
+    void Awake()
     {
+        healthComponent = GetComponent<HealthComponent>();
         arbol.InicializarArbol();
 
         for (int i = 0; i < gameObjects.Length; i++)
@@ -22,7 +24,20 @@ public class TreeBoss : MonoBehaviour
             }
             arbol.AgregarElem(ref arbol.raiz, gameObjects[i]);
         }
+    }
 
-      arbol.InstanciarPreOrder(arbol.raiz, spawnPoints, delayBetweenSpawns);
+    public void ActivateSpawn()
+    {
+        arbol.InstanciarLevelOrder(arbol.raiz, spawnPoints, delayBetweenSpawns);
+    }
+    
+    public void TakeDamage(float damage)
+    {
+        healthComponent.TakeDamage(damage);
+    }
+    
+    public void Die()
+    {
+        Destroy(gameObject);
     }
 }
