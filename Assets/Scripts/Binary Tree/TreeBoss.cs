@@ -10,10 +10,16 @@ public class TreeBoss : MonoBehaviour, IDamageable, IDeathLogic
     public float delayBetweenSpawns = 1f; 
     public HealthComponent healthComponent;
     
+    [SerializeField] private int dmgSound;
+    [SerializeField] private int spawnSound;
+    private AudioManager audioManager;
+    
     void Awake()
     {
         healthComponent = GetComponent<HealthComponent>();
         arbol.InicializarArbol();
+        
+        audioManager = GameManager.Instance.audioManager;
 
         for (int i = 0; i < gameObjects.Length; i++)
         {
@@ -34,10 +40,27 @@ public class TreeBoss : MonoBehaviour, IDamageable, IDeathLogic
     public void TakeDamage(float damage)
     {
         healthComponent.TakeDamage(damage);
+        PlayDMGSound();
     }
     
     public void Die()
     {
         Destroy(gameObject);
+    }
+    
+    public void PlayDMGSound()
+    {
+        if (spawnSound >= 0 && audioManager != null)
+        {
+            audioManager.PlaySFX(dmgSound);
+        }
+    }
+    
+    public void PlaySpawnSound()
+    {
+        if (spawnSound >= 0 && audioManager != null)
+        {
+            audioManager.PlaySFX(spawnSound);
+        }
     }
 }

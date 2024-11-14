@@ -294,7 +294,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   healthComponent: {fileID: 1814824132664241563}
-  dmgSound: 0
+  dmgSound: 14
 --- !u!114 &1814824132664241563
 MonoBehaviour:
   m_ObjectHideFlags: 0

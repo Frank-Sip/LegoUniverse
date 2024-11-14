@@ -6,6 +6,8 @@ public class ABB : MonoBehaviour
 {
     public NodoABB raiz;
 
+    [SerializeField] private TreeBoss treeBoss;
+
     public void InicializarArbol()
     {
         raiz = null;
@@ -166,6 +168,7 @@ public class ABB : MonoBehaviour
             {
                 NodoABB current = queue.Dequeue();
                 Instantiate(current.prefab, spawnPoints[index].position, Quaternion.Euler(0, 180, 0));
+                treeBoss.PlaySpawnSound();
                 index++;
                 yield return new WaitForSeconds(delay);
 
@@ -180,7 +183,6 @@ public class ABB : MonoBehaviour
             }
         }
     }
-
 
     public void InstanciarLevelOrder(NodoABB nodo, Transform[] spawnPoints, float delay)
     {
