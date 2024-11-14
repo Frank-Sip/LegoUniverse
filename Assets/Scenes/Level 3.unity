@@ -3839,7 +3839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a0b072e772ec2142a9f6dfc59bccfcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
+  maxHealth: 500
 --- !u!1 &960484340
 GameObject:
   m_ObjectHideFlags: 0
@@ -8086,6 +8086,12 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 28687391914681741, guid: bfa8f6f1464832848995681c96215ccb,
+        type: 3}
+      propertyPath: bulletConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: a8041bfe7e38ff0449b3ca1a9a9a2671,
+        type: 2}
     - target: {fileID: 2578553375770599189, guid: bfa8f6f1464832848995681c96215ccb,
         type: 3}
       propertyPath: m_Name

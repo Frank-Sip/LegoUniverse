@@ -167,8 +167,13 @@ public class ABB : MonoBehaviour
             while (queue.Count > 0 && index < spawnPoints.Length)
             {
                 NodoABB current = queue.Dequeue();
-                Instantiate(current.prefab, spawnPoints[index].position, Quaternion.Euler(0, 180, 0));
-                treeBoss.PlaySpawnSound();
+                
+                if (spawnPoints[index] != null)
+                {
+                    Instantiate(current.prefab, spawnPoints[index].position, Quaternion.Euler(0, 180, 0));
+                    treeBoss.PlaySpawnSound();
+                }
+
                 index++;
                 yield return new WaitForSeconds(delay);
 

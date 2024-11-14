@@ -17,9 +17,16 @@ public class ObjectPool<T> where T : MonoBehaviour
         if (pool.Count > 0)
         {
             item = pool.Pop();
-            item.transform.position = position;
-            item.transform.rotation = rotation;
-            item.gameObject.SetActive(true);
+            if (item == null || item.gameObject == null)
+            {
+                item = Object.Instantiate(prefab, position, rotation);
+            }
+            else
+            {
+                item.transform.position = position;
+                item.transform.rotation = rotation;
+                item.gameObject.SetActive(true);
+            }
         }
         else
         {

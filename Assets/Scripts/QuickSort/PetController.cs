@@ -14,7 +14,7 @@ public class PetController : MonoBehaviour, IInteractable
     [SerializeField] private int interactionSound;
     private AudioManager audioManager;
     
-    private void Start()
+    private void Awake()
     {
         Character playerComponent = FindObjectOfType<Character>();
         audioManager = GameManager.Instance.audioManager;
