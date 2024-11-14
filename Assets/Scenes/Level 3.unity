@@ -1408,74 +1408,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3743fd7e64e12714f9c5ea16494f62e9, type: 3}
---- !u!1001 &370734655
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 2578553375770599189, guid: bfa8f6f1464832848995681c96215ccb,
-        type: 3}
-      propertyPath: m_Name
-      value: Tie Interceptor
-      objectReference: {fileID: 0}
-    - target: {fileID: 2919190240813942191, guid: bfa8f6f1464832848995681c96215ccb,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -83.26
-      objectReference: {fileID: 0}
-    - target: {fileID: 2919190240813942191, guid: bfa8f6f1464832848995681c96215ccb,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 338.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 2919190240813942191, guid: bfa8f6f1464832848995681c96215ccb,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -7.22
-      objectReference: {fileID: 0}
-    - target: {fileID: 2919190240813942191, guid: bfa8f6f1464832848995681c96215ccb,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2919190240813942191, guid: bfa8f6f1464832848995681c96215ccb,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2919190240813942191, guid: bfa8f6f1464832848995681c96215ccb,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2919190240813942191, guid: bfa8f6f1464832848995681c96215ccb,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2919190240813942191, guid: bfa8f6f1464832848995681c96215ccb,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2919190240813942191, guid: bfa8f6f1464832848995681c96215ccb,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2919190240813942191, guid: bfa8f6f1464832848995681c96215ccb,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: bfa8f6f1464832848995681c96215ccb, type: 3}
 --- !u!1 &399296470 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8946752286175497749, guid: 82e88ebbd3ec2824e95eb1ff78025d87,
@@ -2568,9 +2500,10 @@ PrefabInstance:
     - target: {fileID: 5594559267795311662, guid: 21e95bf44742c324aac4631f2991785b,
         type: 3}
       propertyPath: dialogue
-      value: It seems that entrance is blocked by a guard. You will need a weapon
-        with enough range to defeat him, like the one on top of that platform. Oh,
-        and watch out for the water!
+      value: "During the fight, I analyzed this place. In the next area, there's
+        a magical tree that guards our only way off the island. If we can defeat
+        it, we\u2019ll be able to escape. But be careful, the tree will summon powerful
+        wood warriors to stop us."
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3713,9 +3646,9 @@ PrefabInstance:
     - target: {fileID: 5594559267795311662, guid: 21e95bf44742c324aac4631f2991785b,
         type: 3}
       propertyPath: dialogue
-      value: It seems that entrance is blocked by a guard. You will need a weapon
-        with enough range to defeat him, like the one on top of that platform. Oh,
-        and watch out for the water!
+      value: Whew, that was close! Luckily, we escaped successfully. This little
+        friend is happy that you helped him, and in gratitude, he wants to help us
+        escape this place. I've added a laser cannon to help us out in battles.
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3869,7 +3802,7 @@ MonoBehaviour:
   - {fileID: 2143625672}
   - {fileID: 834275278}
   - {fileID: 230127611}
-  delayBetweenSpawns: 1
+  delayBetweenSpawns: 5
   healthComponent: {fileID: 954746847}
   dmgSound: 13
   spawnSound: 15
@@ -4133,9 +4066,8 @@ PrefabInstance:
     - target: {fileID: 5594559267795311662, guid: 21e95bf44742c324aac4631f2991785b,
         type: 3}
       propertyPath: dialogue
-      value: It seems that entrance is blocked by a guard. You will need a weapon
-        with enough range to defeat him, like the one on top of that platform. Oh,
-        and watch out for the water!
+      value: "Wow! Those trees are definitely tougher than the pigs. Maybe it\u2019s
+        because they\u2019re made of solid wood."
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8146,6 +8078,89 @@ PrefabInstance:
       insertIndex: 3
       addedObject: {fileID: 938699509}
   m_SourcePrefab: {fileID: 100100000, guid: af1be84905d6aa04388c92e6265ca457, type: 3}
+--- !u!1001 &2084752764
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2578553375770599189, guid: bfa8f6f1464832848995681c96215ccb,
+        type: 3}
+      propertyPath: m_Name
+      value: Tie Interceptor
+      objectReference: {fileID: 0}
+    - target: {fileID: 2919190240813942191, guid: bfa8f6f1464832848995681c96215ccb,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -83.407776
+      objectReference: {fileID: 0}
+    - target: {fileID: 2919190240813942191, guid: bfa8f6f1464832848995681c96215ccb,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 337.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 2919190240813942191, guid: bfa8f6f1464832848995681c96215ccb,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -7.2581425
+      objectReference: {fileID: 0}
+    - target: {fileID: 2919190240813942191, guid: bfa8f6f1464832848995681c96215ccb,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2919190240813942191, guid: bfa8f6f1464832848995681c96215ccb,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2919190240813942191, guid: bfa8f6f1464832848995681c96215ccb,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2919190240813942191, guid: bfa8f6f1464832848995681c96215ccb,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2919190240813942191, guid: bfa8f6f1464832848995681c96215ccb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2919190240813942191, guid: bfa8f6f1464832848995681c96215ccb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2919190240813942191, guid: bfa8f6f1464832848995681c96215ccb,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2949170531622793572, guid: bfa8f6f1464832848995681c96215ccb,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 48.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 2949170531622793572, guid: bfa8f6f1464832848995681c96215ccb,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 48.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 2949170531622793572, guid: bfa8f6f1464832848995681c96215ccb,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 48.21
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bfa8f6f1464832848995681c96215ccb, type: 3}
 --- !u!1 &2088517823
 GameObject:
   m_ObjectHideFlags: 0
@@ -9244,7 +9259,6 @@ SceneRoots:
   - {fileID: 2254531424117332570}
   - {fileID: 1114868135654294745}
   - {fileID: 1822372441}
-  - {fileID: 370734655}
   - {fileID: 296574655}
   - {fileID: 691859886}
   - {fileID: 1747256300}
@@ -9254,3 +9268,4 @@ SceneRoots:
   - {fileID: 1169188066}
   - {fileID: 1297798918}
   - {fileID: 1479963325}
+  - {fileID: 2084752764}

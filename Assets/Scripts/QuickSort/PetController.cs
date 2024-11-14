@@ -5,7 +5,7 @@ public class PetController : MonoBehaviour, IInteractable
 {
     public InteractPriority InteractPriority => InteractPriority.High;
 
-    private List<Transform> detectedEnemies = new List<Transform>();
+    private List<Enemy> detectedEnemies = new List<Enemy>();
     private Transform character;
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] ShootingBehavior shootingBehavior;
@@ -13,10 +13,15 @@ public class PetController : MonoBehaviour, IInteractable
 
     [SerializeField] private int interactionSound;
     private AudioManager audioManager;
-
-    private void Awake()
+    
+    private void Start()
     {
+        Character playerComponent = FindObjectOfType<Character>();
         audioManager = GameManager.Instance.audioManager;
+        if (playerComponent != null)
+        {
+            character = playerComponent.transform;
+        }
     }
 
     private void PlayInteractionSound()
@@ -30,9 +35,8 @@ public class PetController : MonoBehaviour, IInteractable
     public void Interact()
     {
         transform.SetParent(character.transform);
-        transform.localPosition = new Vector3(0, 3f, 0);
-        PlayInteractionSound();
-
+        transform.localPosition = new Vector3(0, 2f, 0);
+        
         Collider petCollider = GetComponent<Collider>();
         Collider characterCollider = character.GetComponent<Collider>();
         if (petCollider != null && characterCollider != null)
@@ -42,26 +46,26 @@ public class PetController : MonoBehaviour, IInteractable
 
         canShoot = true;
     }
-
-    private void Start()
+    
+    private IEnumerator<WaitForSeconds> EnableShootingAfterDelay(float delay)
     {
-        Character playerComponent = FindObjectOfType<Character>();
-        if (playerComponent != null)
-        {
-            character = playerComponent.transform;
-        }
+        yield return new WaitForSeconds(delay);
+        canShoot = true;
     }
-
+    
     private void Update()
     {
-        if (canShoot && detectedEnemies.Count > 0)
+        if (canShoot)
         {
-            Transform closestEnemy = FindClosestEnemy();
-            if (closestEnemy != null)
+            if (detectedEnemies.Count > 0)
             {
-                LookAtEnemy(closestEnemy);
-                Vector3 shootDirection = (closestEnemy.position - transform.position).normalized;
-                shootingBehavior.Shoot(shootDirection);
+                Enemy closestEnemy = FindClosestEnemy();
+                if (closestEnemy != null)
+                {
+                    LookAtEnemy(closestEnemy);
+                    Vector3 shootDirection = (closestEnemy.transform.position - transform.position).normalized;
+                    shootingBehavior.Shoot(shootDirection);
+                }
             }
         }
     }
@@ -70,9 +74,10 @@ public class PetController : MonoBehaviour, IInteractable
     {
         if (((1 << other.gameObject.layer) & enemyLayer) != 0)
         {
-            if (!detectedEnemies.Contains(other.transform))
+            Enemy enemy = other.GetComponent<Enemy>();
+            if (enemy != null && !detectedEnemies.Contains(enemy))
             {
-                detectedEnemies.Add(other.transform);
+                detectedEnemies.Add(enemy);
             }
         }
     }
@@ -81,30 +86,34 @@ public class PetController : MonoBehaviour, IInteractable
     {
         if (((1 << other.gameObject.layer) & enemyLayer) != 0)
         {
-            detectedEnemies.Remove(other.transform);
+            Enemy enemy = other.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                detectedEnemies.Remove(enemy);
+            }
         }
     }
 
-    private Transform FindClosestEnemy()
+    private Enemy FindClosestEnemy()
     {
         detectedEnemies.RemoveAll(enemy => enemy == null);
-
+        
         if (detectedEnemies.Count == 0) return null;
-
-        Transform[] enemiesArray = detectedEnemies.ToArray();
+        
+        Enemy[] enemiesArray = detectedEnemies.ToArray();
         QuickSort(enemiesArray, 0, enemiesArray.Length - 1);
-
+    
         return enemiesArray[0];
     }
-
-    private void LookAtEnemy(Transform enemy)
+    
+    private void LookAtEnemy(Enemy enemy)
     {
-        Vector3 direction = (enemy.position - transform.position).normalized;
+        Vector3 direction = (enemy.transform.position - transform.position).normalized;
         Quaternion rotation = Quaternion.LookRotation(direction);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * 10f);
     }
 
-    private void QuickSort(Transform[] arr, int left, int right)
+    public void QuickSort(Enemy[] arr, int left, int right)
     {
         if (left < right)
         {
@@ -114,23 +123,22 @@ public class PetController : MonoBehaviour, IInteractable
         }
     }
 
-    private int Partition(Transform[] arr, int left, int right)
+    public int Partition(Enemy[] arr, int left, int right)
     {
-        float pivotDistance = Vector3.Distance(transform.position, arr[(left + right) / 2].position);
-
+        float pivotDistance = Vector3.Distance(transform.position, arr[(left + right) / 2].transform.position);
         while (true)
         {
-            while (Vector3.Distance(transform.position, arr[left].position) < pivotDistance && left < right)
+            while (Vector3.Distance(transform.position, arr[left].transform.position) < pivotDistance && left < right)
             {
                 left++;
             }
-            while (Vector3.Distance(transform.position, arr[right].position) > pivotDistance && left < right)
+            while (Vector3.Distance(transform.position, arr[right].transform.position) > pivotDistance && left < right)
             {
                 right--;
             }
             if (left < right)
             {
-                Transform temp = arr[right];
+                Enemy temp = arr[right];
                 arr[right] = arr[left];
                 arr[left] = temp;
             }
