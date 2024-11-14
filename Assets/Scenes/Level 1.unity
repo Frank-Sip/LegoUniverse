@@ -4347,7 +4347,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1197570379
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8903,7 +8903,7 @@ PrefabInstance:
     - target: {fileID: 1195867957587433627, guid: a63a3de62faf5344081edb98f6108f0f,
         type: 3}
       propertyPath: spawnInterval
-      value: 2
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 6889781117989289668, guid: a63a3de62faf5344081edb98f6108f0f,
         type: 3}
@@ -9208,7 +9208,7 @@ PrefabInstance:
     - target: {fileID: 3775461423512791875, guid: b96fd0b07f087b541a2fe1ebd115453a,
         type: 3}
       propertyPath: triggerBoxSize.x
-      value: 50
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3775461423512791875, guid: b96fd0b07f087b541a2fe1ebd115453a,
         type: 3}
@@ -9218,7 +9218,7 @@ PrefabInstance:
     - target: {fileID: 3775461423512791875, guid: b96fd0b07f087b541a2fe1ebd115453a,
         type: 3}
       propertyPath: triggerBoxSize.z
-      value: 50
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
