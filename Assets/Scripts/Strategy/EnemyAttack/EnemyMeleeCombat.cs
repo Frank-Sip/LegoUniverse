@@ -12,10 +12,10 @@ public class EnemyMeleeCombat : MonoBehaviour
 
     private Enemy enemy;
 
-    private bool canAttack = true;
+    private float timeSinceLastAttack = 0f;
 
     private Collider[] playerInRange = new Collider[1];
-    
+
     [SerializeField] private int attackSound;
     private AudioManager audioManager;
 
@@ -27,14 +27,16 @@ public class EnemyMeleeCombat : MonoBehaviour
     
     private void Update()
     {
-        if (canAttack)
+        timeSinceLastAttack += Time.deltaTime;
+        
+        if (timeSinceLastAttack >= attackCooldown)
         {
-            StartCoroutine(Attack());
+            Attack();
         }
 
         CheckAttackRange();
     }
-    
+
     private void CheckAttackRange()
     {
         if (IsPlayerInRange())
@@ -46,7 +48,7 @@ public class EnemyMeleeCombat : MonoBehaviour
             enemy.speed = 5f;
         }
     }
-    
+
     private void PlayAttackSound()
     {
         if (attackSound >= 0 && attackSound < audioManager.soundEffects.Count)
@@ -54,16 +56,14 @@ public class EnemyMeleeCombat : MonoBehaviour
             audioManager.PlaySFX(attackSound);
         }
     }
-    
+
     private bool IsPlayerInRange()
     {
         return Physics.OverlapSphereNonAlloc(combatPoint.position, attackRadius, playerInRange, playerLayer) > 0;
     }
 
-    private IEnumerator Attack()
+    private void Attack()
     {
-        canAttack = false;
-
         int playerHit = Physics.OverlapSphereNonAlloc(combatPoint.position, attackRadius, playerInRange, playerLayer);
 
         for (int i = 0; i < playerHit; i++)
@@ -77,8 +77,7 @@ public class EnemyMeleeCombat : MonoBehaviour
             }
         }
         
-        yield return new WaitForSeconds(attackCooldown);
-        canAttack = true;
+        timeSinceLastAttack = 0f;
     }
 
     private void OnDrawGizmos()
