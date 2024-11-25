@@ -78,20 +78,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ResumeGame()
+    public void DeactivatePauseOverlay()
     {
-        Time.timeScale = 1f;
         pauseMenu.SetActive(false);
     }
 
-    public void PauseGame()
+    public void ActivePauseOverlay()
     {
-        Time.timeScale = 0f;
         pauseMenu.SetActive(true);
-    }
-
-    public void CompletePuzzle()
-    {
-        ChangeGameStatus(new GameplayState(), false);
     }
 }

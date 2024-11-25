@@ -6,13 +6,15 @@ public class PauseState : GameState
 {
     public override void Enter(GameManager gameManager)
     {
-        gameManager.PauseGame();
+        Time.timeScale = 0f;
+        gameManager.ActivePauseOverlay();
         Debug.Log("Pausing game");
     }
 
     public override void Exit(GameManager gameManager)
     {
-        gameManager.ResumeGame();
+        Time.timeScale = 1f;
+        gameManager.DeactivatePauseOverlay();
         Debug.Log("Leaving pause");
     }
 
