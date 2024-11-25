@@ -193,7 +193,7 @@ public class Character : MonoBehaviour, IDamageable, IDeathLogic
 
     public void Die()
     {
-        GameManager.Instance.ChangeGameStatus(new DefeatState(), true);
+        GameManager.Instance.ChangeGameStatus(new DefeatState());
     }
 
     private void TryInteract()

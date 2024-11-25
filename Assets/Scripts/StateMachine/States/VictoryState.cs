@@ -8,6 +8,7 @@ public class VictoryState : GameState
     public override void Enter(GameManager gameManager)
     {
         SceneManager.LoadScene("VictoryScene");
+        gameManager.audioManager.PlayBGM(2);
         Time.timeScale = 0f;
     }
 
@@ -21,7 +22,7 @@ public class VictoryState : GameState
     {
         if (Input.GetKeyDown(KeyCode.R))
         {
-            gameManager.ChangeGameStatus(new MainMenuState(), true);
+            gameManager.ChangeGameStatus(new MainMenuState());
         }
     }
 }

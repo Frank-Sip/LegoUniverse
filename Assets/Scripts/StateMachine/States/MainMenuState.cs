@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenuState : GameState
 {
     public override void Enter(GameManager gameManager)
     {
+        SceneManager.LoadScene("Menu");
+        gameManager.audioManager.PlayBGM(0);
         Debug.Log("Entering Menu");
     }
 
@@ -18,7 +21,8 @@ public class MainMenuState : GameState
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            gameManager.ChangeGameStatus(new GameplayState(), true);
+            gameManager.SetCurrentLevel("Level 1");
+            gameManager.ChangeGameStatus(new GameplayState());
         }
     }
 }

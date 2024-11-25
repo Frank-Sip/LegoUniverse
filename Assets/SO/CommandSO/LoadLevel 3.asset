@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   commandName: loadlevel3
   levelName: Level 3
+  newLevel: Level 3

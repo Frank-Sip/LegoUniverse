@@ -22,7 +22,7 @@ public class PauseState : GameState
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            gameManager.ChangeGameStatus(new GameplayState(), false);
+            gameManager.ChangeGameStatus(new GameplayState());
         }
     }
 }
