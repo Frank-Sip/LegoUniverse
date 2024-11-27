@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Awake()
+    private void Start()
     {
         if (instance == null)
         {
@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        audioManager = FindObjectOfType<AudioManager>();
+        audioManager = ServiceLocator.Instance.GetService<AudioManager>("AudioManager");
     }
 
     private void Update()

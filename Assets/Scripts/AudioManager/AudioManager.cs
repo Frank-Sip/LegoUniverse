@@ -24,6 +24,7 @@ public class AudioManager : MonoBehaviour
         }
         
         if (music == null) music = GetComponent<AudioSource>();
+        ServiceLocator.Instance.SetService("AudioManager", this);
     }
     
     public void PlayBGM(int bgmIndex)

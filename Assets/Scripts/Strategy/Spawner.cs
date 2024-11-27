@@ -20,7 +20,7 @@ public class Spawner : MonoBehaviour, IInteractable
     {
         bulletFactory = new BulletFactory();
         bulletFactory.Initialize(bulletConfig.bulletPrefab.GetComponent<Bullet>());
-        audioManager = FindObjectOfType<AudioManager>();
+        audioManager = GameManager.Instance.audioManager;
     }
     
     private void PlaySpawnSound()
