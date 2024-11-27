@@ -22,7 +22,7 @@ public class PlayerAction : MonoBehaviour
                 HandleShooting();
             }
             
-            //Dejar dentro de null porque si no tira error
+            //Keep It inside null to avoid errors
             if (!weaponSelector.activeGun.HasAmmo() && weaponSelector.activeGun.type != GunType.Crowbar)
             {
                 weaponSelector.UnequipWeapon();
