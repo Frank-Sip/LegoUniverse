@@ -18,9 +18,13 @@ public class Spawner : MonoBehaviour, IInteractable
 
     private void Awake()
     {
-        bulletFactory = new BulletFactory();
-        bulletFactory.Initialize(bulletConfig.bulletPrefab.GetComponent<Bullet>());
         audioManager = GameManager.Instance.audioManager;
+        
+        if (bulletConfig != null && bulletConfig.bulletPrefab != null)
+        {
+            bulletFactory = new BulletFactory();
+            bulletFactory.Initialize(bulletConfig.bulletPrefab.GetComponent<Bullet>(), bulletConfig);
+        }
     }
     
     private void PlaySpawnSound()
@@ -34,7 +38,7 @@ public class Spawner : MonoBehaviour, IInteractable
     public void Interact()
     {
         Vector3 direction = spawnPoint.forward;
-        GameObject bullet = bulletFactory.CreateBullet(bulletConfig, spawnPoint.position, direction);
+        GameObject bullet = bulletFactory.Create(spawnPoint.position, Quaternion.LookRotation(direction));
         PlaySpawnSound();
         bullet.transform.SetParent(null);
         Rigidbody bulletRb = bullet.GetComponent<Rigidbody>();

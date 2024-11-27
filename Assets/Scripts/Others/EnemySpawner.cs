@@ -29,7 +29,7 @@ public class EnemySpawner : MonoBehaviour
         while (isSpawning)
         {
             Vector3 randomPosition = GetRandomPositionInArea();
-            enemyFactory.CreateEnemy(randomPosition, Quaternion.identity);
+            enemyFactory.Create(randomPosition, Quaternion.identity);
 
             yield return new WaitForSeconds(spawnInterval);
         }
