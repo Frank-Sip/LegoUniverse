@@ -57,7 +57,7 @@ public class Enemy : MonoBehaviour, IDamageable, IDeathLogic
     {
         if (enemyFactory != null)
         {
-            enemyFactory.ReturnToPool(this);
+            enemyFactory.ReturnToPool(this.gameObject);
         }
     }
 

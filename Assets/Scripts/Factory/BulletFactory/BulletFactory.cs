@@ -20,8 +20,9 @@ public class BulletFactory : AbstractFactory
         return bullet.gameObject;
     }
 
-    public void ReturnToPool(Bullet bullet)
+    public override void ReturnToPool(GameObject obj)
     {
+        Bullet bullet = obj.GetComponent<Bullet>();
         bulletPool.ReturnToPool(bullet);
     }
 }

@@ -23,8 +23,9 @@ public class EnemyFactory : AbstractFactory
         return enemy.gameObject;
     }
 
-    public void ReturnToPool(Enemy enemy)
+    public override void ReturnToPool(GameObject obj)
     {
+        Enemy enemy = obj.GetComponent<Enemy>();
         enemyPool.ReturnToPool(enemy);
     }
 }
