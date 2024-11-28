@@ -9,9 +9,9 @@ public class Enemy : MonoBehaviour, IDamageable, IDeathLogic
     public float speed = 5f;
     [SerializeField] private Transform target;
     [SerializeField] private LayerMask playerLayer;
+    [SerializeField] private EnemyFactory enemyFactory;
     private bool isChasing = false;
     private BoxCollider triggerBox;
-    private EnemyFactory enemyFactory;
     
     public HealthComponent healthComponent;
 
@@ -55,7 +55,6 @@ public class Enemy : MonoBehaviour, IDamageable, IDeathLogic
 
     public  void Die()
     {
-        enemyFactory = ServiceLocator.Instance.Get<EnemyFactory>();
         if (enemyFactory != null)
         {
             enemyFactory.ReturnToPool(this);

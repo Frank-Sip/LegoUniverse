@@ -205,6 +205,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 916037380}
+    - target: {fileID: 7006889338622356022, guid: 3743fd7e64e12714f9c5ea16494f62e9,
+        type: 3}
+      propertyPath: enemyFactory
+      value: 
+      objectReference: {fileID: 865395697}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1402,6 +1407,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 916037380}
+    - target: {fileID: 7006889338622356022, guid: 3743fd7e64e12714f9c5ea16494f62e9,
+        type: 3}
+      propertyPath: enemyFactory
+      value: 
+      objectReference: {fileID: 865395697}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2666,6 +2676,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 916037380}
+    - target: {fileID: 7006889338622356022, guid: 3743fd7e64e12714f9c5ea16494f62e9,
+        type: 3}
+      propertyPath: enemyFactory
+      value: 
+      objectReference: {fileID: 865395697}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3014,6 +3029,11 @@ PrefabInstance:
       propertyPath: dmgSound
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 1579675271676493770, guid: 5aee9a590905fed4d8dbf0beab9eec1f,
+        type: 3}
+      propertyPath: enemyFactory
+      value: 
+      objectReference: {fileID: 865395697}
     - target: {fileID: 1579675271676493770, guid: 5aee9a590905fed4d8dbf0beab9eec1f,
         type: 3}
       propertyPath: healthComponent
@@ -3535,6 +3555,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1309264c95dc52b41855563fd7dc2cba, type: 3}
+--- !u!114 &865395697 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3775461423512791875, guid: b96fd0b07f087b541a2fe1ebd115453a,
+    type: 3}
+  m_PrefabInstance: {fileID: 7448121799029872670}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0c974d12f069e54dbb50f7e7530b124, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &876789479
 GameObject:
   m_ObjectHideFlags: 0
@@ -4850,6 +4882,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 916037380}
+    - target: {fileID: 7006889338622356022, guid: 3743fd7e64e12714f9c5ea16494f62e9,
+        type: 3}
+      propertyPath: enemyFactory
+      value: 
+      objectReference: {fileID: 865395697}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5949,6 +5986,11 @@ PrefabInstance:
       propertyPath: dmgSound
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 7006889338622356022, guid: 3743fd7e64e12714f9c5ea16494f62e9,
+        type: 3}
+      propertyPath: enemyFactory
+      value: 
+      objectReference: {fileID: 865395697}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6008,6 +6050,11 @@ PrefabInstance:
       propertyPath: dmgSound
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 417929951428300837, guid: bd2f086979c458843be17c53622d719d,
+        type: 3}
+      propertyPath: enemyFactory
+      value: 
+      objectReference: {fileID: 865395697}
     - target: {fileID: 1083448852198624876, guid: bd2f086979c458843be17c53622d719d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6649,6 +6696,11 @@ PrefabInstance:
       propertyPath: dmgSound
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 1313905408769676806, guid: 52ea6bf155025434498a7a561f2cc4c9,
+        type: 3}
+      propertyPath: enemyFactory
+      value: 
+      objectReference: {fileID: 865395697}
     - target: {fileID: 1665314492067268082, guid: 52ea6bf155025434498a7a561f2cc4c9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6927,6 +6979,11 @@ PrefabInstance:
       propertyPath: dmgSound
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 6455512241264317129, guid: c4124d3db36046545906e78ca4d184f9,
+        type: 3}
+      propertyPath: enemyFactory
+      value: 
+      objectReference: {fileID: 865395697}
     - target: {fileID: 7337855450181507916, guid: c4124d3db36046545906e78ca4d184f9,
         type: 3}
       propertyPath: m_Size.x
@@ -7872,6 +7929,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 916037380}
+    - target: {fileID: 7006889338622356022, guid: 3743fd7e64e12714f9c5ea16494f62e9,
+        type: 3}
+      propertyPath: enemyFactory
+      value: 
+      objectReference: {fileID: 865395697}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7960,6 +8022,11 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 916037380}
+    - target: {fileID: 7006889338622356022, guid: 3743fd7e64e12714f9c5ea16494f62e9,
+        type: 3}
+      propertyPath: enemyFactory
+      value: 
+      objectReference: {fileID: 865395697}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
