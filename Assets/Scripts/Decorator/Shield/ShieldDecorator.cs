@@ -9,10 +9,10 @@ public class ShieldDecorator : IDamageable
 
     public float Shield => shield;
 
-    public ShieldDecorator(IDamageable decoratedObject, float shield)
+    public ShieldDecorator(IDamageable decoratedObject, float shieldAmount)
     {
         decorateOBJ = decoratedObject;
-        shield = shield;
+        shield = shieldAmount;
     }
 
     public void TakeDamage(float damage)
