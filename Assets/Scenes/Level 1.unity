@@ -8065,6 +8065,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1378212810789573504, guid: 5d11af98104690d45833c2600041d8d4,
+        type: 3}
+      propertyPath: maxHealth
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5895335026958332592, guid: 5d11af98104690d45833c2600041d8d4,
+        type: 3}
+      propertyPath: shield
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5895335026958332592, guid: 5d11af98104690d45833c2600041d8d4,
         type: 3}
       propertyPath: HealthBar
@@ -8188,11 +8198,21 @@ PrefabInstance:
       propertyPath: character
       value: 
       objectReference: {fileID: 1568079746}
+    - target: {fileID: 4573383110108031527, guid: 81d3aef17dee2034199b30022e9f47cd,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7188109719088814181, guid: 81d3aef17dee2034199b30022e9f47cd,
         type: 3}
       propertyPath: m_Name
       value: GameplayCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7191979888715288878, guid: 81d3aef17dee2034199b30022e9f47cd,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1568079746}
     - target: {fileID: 7964868596721005206, guid: 81d3aef17dee2034199b30022e9f47cd,
         type: 3}
       propertyPath: m_Pivot.x
