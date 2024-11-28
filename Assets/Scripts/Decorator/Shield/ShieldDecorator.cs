@@ -4,39 +4,44 @@ using UnityEngine;
 
 public class ShieldDecorator : IDamageable
 {
-    private readonly IDamageable _decoratedEntity;
-    private float _shieldAmount;
+    private readonly IDamageable decorateOBJ;
+    private float shield;
 
-    public float ShieldAmount => _shieldAmount;
+    public float Shield => shield;
 
-    public ShieldDecorator(IDamageable decoratedEntity, float shieldAmount)
+    public ShieldDecorator(IDamageable decoratedObject, float shield)
     {
-        _decoratedEntity = decoratedEntity;
-        _shieldAmount = shieldAmount;
+        decorateOBJ = decoratedObject;
+        shield = shield;
     }
 
     public void TakeDamage(float damage)
     {
-        if (_shieldAmount > 0)
+        if (shield > 0)
         {
-            if (damage <= _shieldAmount)
+            if (damage <= shield)
             {
-                _shieldAmount -= damage;
+                shield -= damage;
                 return;
             }
             else
             {
-                damage -= _shieldAmount;
-                _shieldAmount = 0;
+                damage -= shield;
+                shield = 0;
             }
         }
         
-        _decoratedEntity.TakeDamage(damage);
+        decorateOBJ.TakeDamage(damage);
+    }
+
+    public void IncreaseShield(float amount)
+    {
+        shield += amount;
     }
     
     public float GetShieldAmount()
     {
-        return _shieldAmount;
+        return shield;
     }
 }
 

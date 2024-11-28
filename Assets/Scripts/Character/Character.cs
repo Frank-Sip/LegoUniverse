@@ -108,7 +108,7 @@ public class Character : MonoBehaviour, IDamageable, IDeathLogic
     [SerializeField] private float groundRadius;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float jumpBuffer;
-    [SerializeField] private float shield = 5f;
+    [SerializeField] private float shield = 10f;
     public HealthComponent healthComponent;
     public IDamageable decoratedCharacter;
     
