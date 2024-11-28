@@ -37,7 +37,7 @@ public class ServiceLocator : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void Register<T>(T service) where T : MonoBehaviour
+    public void SetService<T>(T service) where T : MonoBehaviour
     {
         var type = typeof(T);
         if (!services.ContainsKey(type))
@@ -46,20 +46,18 @@ public class ServiceLocator : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning($"Service {type.Name} already registered. Replacing.");
             services[type] = service;
         }
     }
 
-    public T Get<T>() where T : MonoBehaviour
+    public T GetService<T>() where T : MonoBehaviour
     {
         var type = typeof(T);
         if (services.TryGetValue(type, out var service))
         {
             return service as T;
         }
-
-        Debug.LogError($"Service {type.Name} not found.");
+        
         return null;
     }
 }

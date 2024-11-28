@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        audioManager = ServiceLocator.Instance.Get<AudioManager>();
+        audioManager = ServiceLocator.Instance.GetService<AudioManager>();
     }
 
     private void Update()
