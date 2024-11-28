@@ -42,14 +42,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        InitializeServices();
-    }
-    
-    private void InitializeServices()
-    {
         audioManager = ServiceLocator.Instance.Get<AudioManager>();
-        var enemyFactory = new GameObject("EnemyFactory").AddComponent<EnemyFactory>();
-        ServiceLocator.Instance.Register(enemyFactory);
     }
 
     private void Update()
