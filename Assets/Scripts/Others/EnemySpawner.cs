@@ -6,14 +6,8 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private float spawnInterval = 2f;
     [SerializeField] private BoxCollider spawnArea;
+    [SerializeField] private EnemyFactory enemyFactory;
     private bool isSpawning = false;
-    
-    private EnemyFactory enemyFactory;
-    
-    private void Start()
-    {
-        enemyFactory = FindObjectOfType<EnemyFactory>();
-    }
 
     public void StartSpawning()
     {

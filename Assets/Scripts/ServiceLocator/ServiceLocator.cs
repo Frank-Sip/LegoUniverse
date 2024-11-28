@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ServiceLocator : MonoBehaviour
 {
-    private Dictionary<string, MonoBehaviour> services = new();
-    
+    private Dictionary<System.Type, MonoBehaviour> services = new();
+
     private static ServiceLocator _instance;
     public static ServiceLocator Instance
     {
@@ -14,18 +14,17 @@ public class ServiceLocator : MonoBehaviour
             if (_instance == null)
             {
                 _instance = FindObjectOfType<ServiceLocator>();
-            }
-
-            if (_instance == null)
-            {
-                var newGO = new GameObject("ServiceLocator");
-                _instance = newGO.AddComponent<ServiceLocator>();
+                if (_instance == null)
+                {
+                    var newGO = new GameObject("ServiceLocator");
+                    _instance = newGO.AddComponent<ServiceLocator>();
+                }
             }
 
             return _instance;
         }
     }
-    
+
     private void Awake()
     {
         if (_instance != null && _instance != this)
@@ -35,40 +34,32 @@ public class ServiceLocator : MonoBehaviour
         }
 
         _instance = this;
+        DontDestroyOnLoad(gameObject);
     }
-    
-    public T GetService<T>(string serviceName) where T : MonoBehaviour
+
+    public void Register<T>(T service) where T : MonoBehaviour
     {
-        if (services.TryGetValue(serviceName, out var service))
+        var type = typeof(T);
+        if (!services.ContainsKey(type))
+        {
+            services[type] = service;
+        }
+        else
+        {
+            Debug.LogWarning($"Service {type.Name} already registered. Replacing.");
+            services[type] = service;
+        }
+    }
+
+    public T Get<T>() where T : MonoBehaviour
+    {
+        var type = typeof(T);
+        if (services.TryGetValue(type, out var service))
         {
             return service as T;
         }
 
-        Debug.LogError($"Service {serviceName} not found");
+        Debug.LogError($"Service {type.Name} not found.");
         return null;
-    }
-    
-    public void SetService(string serviceName, MonoBehaviour service)
-    {
-        if (service == null)
-        {
-            Debug.LogError("Attempted to set a null service.");
-            return;
-        }
-
-        if (!services.ContainsKey(serviceName))
-        {
-            services.Add(serviceName, service);
-        }
-        else
-        {
-            Debug.LogWarning($"Service {serviceName} already exists and will be replaced.");
-            services[serviceName] = service;
-        }
-    }
-    
-    public bool IsInitialized()
-    {
-        return _instance != null;
     }
 }

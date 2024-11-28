@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour, IDamageable, IDeathLogic
     [SerializeField] private LayerMask playerLayer;
     private bool isChasing = false;
     private BoxCollider triggerBox;
+    private EnemyFactory enemyFactory;
     
     public HealthComponent healthComponent;
 
@@ -54,7 +55,7 @@ public class Enemy : MonoBehaviour, IDamageable, IDeathLogic
 
     public  void Die()
     {
-        EnemyFactory enemyFactory = FindObjectOfType<EnemyFactory>();
+        enemyFactory = ServiceLocator.Instance.Get<EnemyFactory>();
         if (enemyFactory != null)
         {
             enemyFactory.ReturnToPool(this);
