@@ -7,13 +7,22 @@ public class DefeatState : GameState
 {
     public override void Enter(GameManager gameManager)
     {
-        SceneManager.LoadScene("DefeatScene");
+        AsyncScenesManager asyncScenesManager = ServiceLocator.Instance.GetService<AsyncScenesManager>();
+        
+        asyncScenesManager.UnloadSceneAsync(gameManager.currentLevel);
+        
+        asyncScenesManager.LoadNewLevel("DefeatScene");
+        
         gameManager.audioManager.PlayBGM(3);
+        
         Time.timeScale = 0f;
+
+        Debug.Log("Entering Defeat");
     }
 
     public override void Exit(GameManager gameManager)
     {
+        SceneManager.UnloadSceneAsync("DefeatScene");
         Time.timeScale = 1f;
         Debug.Log("Leaving Defeat");
     }

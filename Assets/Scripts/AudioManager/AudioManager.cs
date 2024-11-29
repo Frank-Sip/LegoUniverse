@@ -14,15 +14,6 @@ public class AudioManager : MonoBehaviour
     
     private void Awake()
     {
-        if (FindObjectOfType<AudioManager>() != null && FindObjectOfType<AudioManager>() != this)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            DontDestroyOnLoad(gameObject);
-        }
-        
         if (music == null) music = GetComponent<AudioSource>();
         ServiceLocator.Instance.SetService(this);
     }

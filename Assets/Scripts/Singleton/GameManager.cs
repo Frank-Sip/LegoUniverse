@@ -31,17 +31,9 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-            audioManager = ServiceLocator.Instance.GetService<AudioManager>();
-            ChangeGameStatus(new MainMenuState());
-        }
-        else if (instance != this)
-        {
-            Destroy(gameObject);
-        }
+        ServiceLocator.Instance.SetService<AsyncScenesManager>(new AsyncScenesManager());
+        audioManager = ServiceLocator.Instance.GetService<AudioManager>();
+        ChangeGameStatus(new MainMenuState());
     }
 
     private void Update()

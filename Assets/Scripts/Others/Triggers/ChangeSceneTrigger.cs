@@ -14,7 +14,8 @@ public class ChangeSceneTrigger : MonoBehaviour
     {
         if ((playerLayer.value & (1 << other.gameObject.layer)) > 0)
         {
-            SceneManager.LoadScene(scene);
+            SceneManager.UnloadSceneAsync(scene);
+            SceneManager.LoadScene(newLevel, LoadSceneMode.Additive);
             GameManager.Instance.SetCurrentLevel(newLevel);
         }
     }

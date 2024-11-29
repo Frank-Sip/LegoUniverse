@@ -7,13 +7,21 @@ public class VictoryState : GameState
 {
     public override void Enter(GameManager gameManager)
     {
-        SceneManager.LoadScene("VictoryScene");
+        AsyncScenesManager asyncScenesManager = ServiceLocator.Instance.GetService<AsyncScenesManager>();
+        
+        asyncScenesManager.UnloadSceneAsync(gameManager.currentLevel);
+        
+        asyncScenesManager.LoadNewLevel("VictoryScene");
+        
         gameManager.audioManager.PlayBGM(2);
+        
         Time.timeScale = 0f;
+        Debug.Log("Entering Victory");
     }
 
     public override void Exit(GameManager gameManager)
     {
+        SceneManager.UnloadSceneAsync("VictoryScene");
         Time.timeScale = 1f;
         Debug.Log("Leaving Victory");
     }

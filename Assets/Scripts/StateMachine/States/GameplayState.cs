@@ -7,12 +7,24 @@ public class GameplayState : GameState
 {
     public override void Enter(GameManager gameManager)
     {
-        if (SceneManager.GetActiveScene().name != gameManager.currentLevel)
+        AsyncScenesManager asyncScenesManager = ServiceLocator.Instance.GetService<AsyncScenesManager>();
+        
+        if (!asyncScenesManager.IsPermanentSceneLoaded())
         {
-            SceneManager.LoadScene(gameManager.currentLevel);
+            asyncScenesManager.LoadPermanentSceneAsync();
         }
-        gameManager.audioManager.PlayBGM(1);
-        Debug.Log("Joining game");
+        
+        asyncScenesManager.UnloadSceneAsync("Menu");
+        
+        if (!asyncScenesManager.IsLevelLoaded(gameManager.currentLevel))
+        {
+            gameManager.StartCoroutine(LoadGameLevel(gameManager, asyncScenesManager));
+        }
+        else
+        {
+            Debug.Log("Level already loaded, resuming gameplay");
+            gameManager.audioManager.PlayBGM(1);
+        }
     }
 
     public override void Exit(GameManager gameManager)
@@ -26,5 +38,16 @@ public class GameplayState : GameState
         {
             gameManager.ChangeGameStatus(new PauseState());
         }
+    }
+    
+    private IEnumerator LoadGameLevel(GameManager gameManager, AsyncScenesManager asyncScenesManager)
+    {
+        yield return null;
+        
+        asyncScenesManager.LoadNewLevel(gameManager.currentLevel);
+        
+        gameManager.audioManager.PlayBGM(1);
+
+        Debug.Log("Joining game");
     }
 }
