@@ -4146,6 +4146,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5895335026958332592, guid: 5d11af98104690d45833c2600041d8d4,
         type: 3}
+      propertyPath: shield
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5895335026958332592, guid: 5d11af98104690d45833c2600041d8d4,
+        type: 3}
       propertyPath: HealthBar
       value: 
       objectReference: {fileID: 0}

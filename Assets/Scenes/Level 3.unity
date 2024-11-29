@@ -3985,6 +3985,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1374836298035355605, guid: 70ee9af535187bf45bcfdd6c535a80d7,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1568079746}
     - target: {fileID: 2546790796828738206, guid: 70ee9af535187bf45bcfdd6c535a80d7,
         type: 3}
       propertyPath: m_Name
@@ -6926,6 +6931,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1374836298035355605, guid: 70ee9af535187bf45bcfdd6c535a80d7,
+        type: 3}
+      propertyPath: character
+      value: 
+      objectReference: {fileID: 1568079746}
     - target: {fileID: 2546790796828738206, guid: 70ee9af535187bf45bcfdd6c535a80d7,
         type: 3}
       propertyPath: m_Name
@@ -8678,6 +8688,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1378212810789573504, guid: 5d11af98104690d45833c2600041d8d4,
+        type: 3}
+      propertyPath: maxHealth
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5895335026958332592, guid: 5d11af98104690d45833c2600041d8d4,
         type: 3}
       propertyPath: HealthBar

@@ -35,14 +35,13 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            audioManager = ServiceLocator.Instance.GetService<AudioManager>();
             ChangeGameStatus(new MainMenuState());
         }
         else if (instance != this)
         {
             Destroy(gameObject);
         }
-
-        audioManager = ServiceLocator.Instance.GetService<AudioManager>();
     }
 
     private void Update()
