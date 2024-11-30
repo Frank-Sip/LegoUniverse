@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public string currentLevel { get; private set; } = "Level 1";
     public GameObject pauseMenu;
     private StateMachine stateMachine = new StateMachine();
+    
     private static GameManager instance;
 
     public AudioManager audioManager;
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
     {
         ServiceLocator.Instance.SetService<AsyncScenesManager>(new AsyncScenesManager());
         ServiceLocator.Instance.SetService<EnemyFactory>(new EnemyFactory());
+        ServiceLocator.Instance.SetService<EnemySpawner>(new EnemySpawner());
         audioManager = ServiceLocator.Instance.GetService<AudioManager>();
         ChangeGameStatus(new MainMenuState());
     }

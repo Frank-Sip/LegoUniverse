@@ -12,16 +12,11 @@ public class WeaponSpawner : MonoBehaviour, IInteractable
     [SerializeField] private int interactionSound;
     private AudioManager audioManager;
     
-    private void Awake()
-    {
-        audioManager = FindObjectOfType<AudioManager>();
-    }
-    
     private void PlayInteractionSound()
     {
         if (interactionSound >= 0 && interactionSound < audioManager.soundEffects.Count)
         {
-            audioManager.PlaySFX(interactionSound);
+            GameManager.Instance.audioManager.PlaySFX(interactionSound);
         }
     }
 
