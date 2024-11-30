@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class EnemyFactory : AbstractFactory
 {
-    [SerializeField] private Enemy enemyPrefab;
-    [SerializeField] private Vector3 triggerBoxSize = new Vector3(10f, 10f, 10f);
+    private Enemy enemyPrefab;
+    private Vector3 triggerBoxSize = new Vector3(10f, 10f, 10f);
     
     private ObjectPool<Enemy> enemyPool;
 
-    private void Awake()
+    public void Initialize(Enemy enemy, Vector3 triggerSize)
     {
+        enemyPrefab = enemy;
+        triggerBoxSize = triggerSize;
         enemyPool = new ObjectPool<Enemy>(enemyPrefab);
     }
 
@@ -23,7 +25,7 @@ public class EnemyFactory : AbstractFactory
         return enemy.gameObject;
     }
 
-    public override void ReturnToPool(GameObject obj)
+    public void ReturnToPool(GameObject obj)
     {
         Enemy enemy = obj.GetComponent<Enemy>();
         enemyPool.ReturnToPool(enemy);

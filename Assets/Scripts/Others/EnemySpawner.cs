@@ -1,13 +1,23 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private float spawnInterval = 2f;
     [SerializeField] private BoxCollider spawnArea;
-    [SerializeField] private EnemyFactory enemyFactory;
+    [SerializeField] private Enemy enemyPrefab;
+    [SerializeField] private Vector3 triggerBoxSize = new Vector3(10f, 10f, 10f);
+    private EnemyFactory enemyFactory;
     private bool isSpawning = false;
+
+    private void Start()
+    {
+        enemyFactory = ServiceLocator.Instance.GetService<EnemyFactory>();
+        enemyFactory.Initialize(enemyPrefab, triggerBoxSize);
+    }
 
     public void StartSpawning()
     {

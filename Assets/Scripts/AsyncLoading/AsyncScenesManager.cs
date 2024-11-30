@@ -26,7 +26,6 @@ public class AsyncScenesManager : MonoBehaviour
         
         permanentSceneLoadOperation.completed += (AsyncOperation op) =>
         {
-            Debug.Log("Escena permanente cargada correctamente.");
             DontDestroyOnLoad(SceneManager.GetSceneByName(permanentScene).GetRootGameObjects()[0]);
         };
     }
@@ -39,12 +38,12 @@ public class AsyncScenesManager : MonoBehaviour
             AsyncOperation unloadOperation = SceneManager.UnloadSceneAsync(sceneToUnload);
             unloadOperation.completed += (AsyncOperation op) =>
             {
-                Debug.Log($"Escena {sceneName} descargada.");
+                Debug.Log($"{sceneName} unloaded.");
             };
         }
         else
         {
-            Debug.LogWarning($"La escena {sceneName} no está cargada para ser descargada.");
+            Debug.LogWarning($"{sceneName} is not loaded to be unloaded.");
         }
     }
     

@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour, IDamageable, IDeathLogic
     public float speed = 5f;
     [SerializeField] private Transform target;
     [SerializeField] private LayerMask playerLayer;
-    [SerializeField] private EnemyFactory enemyFactory;
+    private EnemyFactory enemyFactory;
     private bool isChasing = false;
     private BoxCollider triggerBox;
     
@@ -22,8 +22,8 @@ public class Enemy : MonoBehaviour, IDamageable, IDeathLogic
     {
         healthComponent = GetComponent<HealthComponent>();
         audioManager = GameManager.Instance.audioManager;
-        
         triggerBox = GetComponentInChildren<BoxCollider>();
+        enemyFactory = ServiceLocator.Instance.GetService<EnemyFactory>();
     }
 
     private void Update()

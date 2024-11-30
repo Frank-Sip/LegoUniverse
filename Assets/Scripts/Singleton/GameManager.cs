@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         ServiceLocator.Instance.SetService<AsyncScenesManager>(new AsyncScenesManager());
+        ServiceLocator.Instance.SetService<EnemyFactory>(new EnemyFactory());
         audioManager = ServiceLocator.Instance.GetService<AudioManager>();
         ChangeGameStatus(new MainMenuState());
     }

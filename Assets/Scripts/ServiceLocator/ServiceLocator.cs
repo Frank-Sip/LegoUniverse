@@ -1,10 +1,10 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class ServiceLocator : MonoBehaviour
 {
-    private Dictionary<System.Type, MonoBehaviour> services = new();
+    private Dictionary<Type, object> services = new();
 
     private static ServiceLocator _instance;
     public static ServiceLocator Instance
@@ -36,8 +36,8 @@ public class ServiceLocator : MonoBehaviour
         _instance = this;
         DontDestroyOnLoad(gameObject);
     }
-
-    public void SetService<T>(T service) where T : MonoBehaviour
+    
+    public void SetService<T>(T service)
     {
         var type = typeof(T);
         if (!services.ContainsKey(type))
@@ -49,15 +49,15 @@ public class ServiceLocator : MonoBehaviour
             services[type] = service;
         }
     }
-
-    public T GetService<T>() where T : MonoBehaviour
+    
+    public T GetService<T>()
     {
         var type = typeof(T);
         if (services.TryGetValue(type, out var service))
         {
-            return service as T;
+            return (T)service;
         }
-        
-        return null;
+
+        return default;
     }
 }
