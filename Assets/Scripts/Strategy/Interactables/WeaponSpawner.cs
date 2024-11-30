@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class WeaponSpawner : MonoBehaviour, IInteractable
 {
@@ -11,12 +13,17 @@ public class WeaponSpawner : MonoBehaviour, IInteractable
     
     [SerializeField] private int interactionSound;
     private AudioManager audioManager;
-    
+
+    private void Start()
+    {
+        audioManager = GameManager.Instance.audioManager;
+    }
+
     private void PlayInteractionSound()
     {
         if (interactionSound >= 0 && interactionSound < audioManager.soundEffects.Count)
         {
-            GameManager.Instance.audioManager.PlaySFX(interactionSound);
+            audioManager.PlaySFX(interactionSound);
         }
     }
 
