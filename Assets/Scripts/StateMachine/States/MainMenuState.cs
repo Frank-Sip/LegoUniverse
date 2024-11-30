@@ -8,14 +8,12 @@ public class MainMenuState : GameState
     public override void Enter(GameManager gameManager)
     {
         AsyncScenesManager asyncScenesManager = ServiceLocator.Instance.GetService<AsyncScenesManager>();
-
-        // Solo carga la escena permanente si no está cargada
+        
         if (!asyncScenesManager.IsPermanentSceneLoaded())
         {
             asyncScenesManager.LoadPermanentSceneAsync();
         }
-
-        // Solo carga la escena del menú si no está cargada
+        
         if (!SceneManager.GetSceneByName("Menu").isLoaded)
         {
             SceneManager.LoadScene("Menu", LoadSceneMode.Additive);
