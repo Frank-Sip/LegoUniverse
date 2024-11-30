@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyFactory : AbstractFactory
+public class EnemyFactory : AbstractFactory<Enemy>
 {
     private Enemy enemyPrefab;
     private Vector3 triggerBoxSize = new Vector3(10f, 10f, 10f);
@@ -29,5 +29,10 @@ public class EnemyFactory : AbstractFactory
     {
         Enemy enemy = obj.GetComponent<Enemy>();
         enemyPool.ReturnToPool(enemy);
+    }
+
+    public void ClearPool()
+    {
+        enemyPool.ClearPool();
     }
 }

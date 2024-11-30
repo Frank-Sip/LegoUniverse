@@ -23,11 +23,6 @@ public class AsyncScenesManager : MonoBehaviour
         
         permanentSceneLoadOperation = SceneManager.LoadSceneAsync(permanentScene, LoadSceneMode.Additive);
         permanentSceneLoadOperation.allowSceneActivation = true;
-        
-        permanentSceneLoadOperation.completed += (AsyncOperation op) =>
-        {
-            DontDestroyOnLoad(SceneManager.GetSceneByName(permanentScene).GetRootGameObjects()[0]);
-        };
     }
     
     public void UnloadSceneAsync(string sceneName)

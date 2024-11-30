@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletFactory : AbstractFactory
+public class BulletFactory : AbstractFactory<Bullet>
 {
     private BulletPool bulletPool;
     private BulletConfiguration bulletConfig;
